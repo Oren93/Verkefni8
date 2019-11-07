@@ -1,0 +1,16 @@
+{
+  "name": "v8",
+  "version": "1.0.0",
+  "description": "Forrita skal viðmót sem leyfir að bæta við, breyta, eyða og klára verkefni af lista.",
+  "main": "scripts.js",
+  "scripts": {
+    "dev": "browser-sync start --server --files index.html styles.css scripts.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "browser-sync": "^2.26.3"
+  },
+  "dependencies": {}
+}
