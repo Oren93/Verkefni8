@@ -12,10 +12,12 @@ document.addEventListener('DOMContentLoaded', () => {
 const text = (() => {
   let items;
   var placeholder;
+  var list = document.querySelector('.items');
+  var entry = document.querySelector('.form');
 
   function init(_form, _items) {
     items = _items;
-    _form.addEventListener('submit', formHandler);
+  //  _form.addEventListener('submit', formHandler);
 
     for (const i of items.querySelectorAll('.item')) {
       i.querySelector('.item__text').addEventListener('click', edit);
@@ -74,6 +76,7 @@ const text = (() => {
 
     span.appendChild(str);
     span.addEventListener('click', edit);
+    console.log("parent node  "+elem.parentNode);
     elem.parentNode.replaceChild(span, elem);
 
   }
@@ -93,48 +96,29 @@ const text = (() => {
   }
 
 
-  function formHandler(e) {
-    e.preventDefault();
 
-    console.log('halló heimur');
-  }
-
-
-  // event handler fyrir það að klára að breyta færslu
-  function commit(e) {
-  }
-
-  // fall sem sér um að bæta við nýju item
-  function add(value) {
-  }
-
-  // hjálparfall til að útbúa element
-  function el(type, className, clickHandler) {
-  }
-
-
-
-  var list = document.querySelector('.items');
-  var entry = document.querySelector('.form');
   entry.onsubmit = function (evt) {
     evt.preventDefault();
+
     var newitem = document.querySelector('.form__input').value;
-    console.log(newitem);
+    console.log("this is:  " + newitem);
+    if (newitem == "") 
+      return;
 
     var li = document.createElement('li');
     li.setAttribute('class', 'item');
 
+    //creating checkbox
     var input = document.createElement("input");
     input.className = "item__checkbox";
     input.type = "checkbox";
     input.addEventListener('change', finish);
 
-
+    //creating span to contain new text
     var span = document.createElement("span");
     span.className = "item__text";
     span.addEventListener('click', edit);
-
-
+    //Creating button
     var button = document.createElement("button");
     button.className = "item__button";
     button.addEventListener('click', deleteItem);
@@ -147,10 +131,25 @@ const text = (() => {
     li.appendChild(span);
     li.appendChild(button);
     list.appendChild(li);
-    console.log(this.value);
-    
-    this.value = "";
+    //Empying input box (added a bit after return time):
+    document.querySelector('.form__input').value = "";
   }
+
+  // event handler fyrir það að klára að breyta færslu
+  function commit(e) {
+  }
+
+  // fall sem sér um að bæta við nýju item
+  function add(value) {
+  }
+
+ /* function formHandler(e) {
+    e.preventDefault();
+    
+    console.log('halló heimur');
+  }*/
+
+
 
   return {
     init: init
